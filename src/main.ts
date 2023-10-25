@@ -1,6 +1,6 @@
 import "./style.scss";
 
-import {App, Editor, Modal, Notice, Plugin, WorkspaceLeaf} from "obsidian";
+import {addIcon, App, Editor, Modal, Notice, Plugin, setIcon, WorkspaceLeaf} from "obsidian";
 import {CSVView, VIEW_TYPE_CSV} from "./view";
 import SampleSettingTab from "./setting";
 import {InsertLinkModal} from "./modal";
@@ -30,12 +30,15 @@ export default class MyPlugin extends Plugin {
         this.addSettingTab(new SampleSettingTab(this.app, this));
 
         // 左侧菜单显示插件图标，点击可以出发提示语
+        addIcon("circle", `<circle cx="50" cy="50" r="50" fill="currentColor" />`);
         this.addRibbonIcon('dice', 'redtea is good', () => {
             new Notice('This is a redtea first plugin!');
+            console.log("加载图标成功");
         });
 
+
         //添加插入链接 对应的文件是modal.ts
-        // 流程上可以考虑从这里读取文件夹的文件名， 添加到新的页面中中
+        // 添加热键的方法 流程上可以考虑从这里读取文件夹的文件名， 添加到新的页面中中
         this.addCommand({
             id: "insert-link",
             name: "Insert link",
@@ -57,6 +60,7 @@ export default class MyPlugin extends Plugin {
                 new InsertLinkModal(this.app, selectedText, onSubmit).open();
             },
         });
+
     }
 
     async loadSettings() {

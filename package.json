@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@codemirror/view": "^6.21.4",
+    "lucide-react": "^0.288.0",
+    "lucide-vue-next": "^0.288.0",
     "vue": "^3.2.37"
   },
   "devDependencies": {
